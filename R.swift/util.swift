@@ -78,7 +78,11 @@ func indentWithString(indentation: String) -> String -> String {
 extension NSURL {
   var isDirectory: Bool {
     var urlIsDirectoryValue: AnyObject?
-    try! self.getResourceValue(&urlIsDirectoryValue, forKey: NSURLIsDirectoryKey)
+    do {
+        try self.getResourceValue(&urlIsDirectoryValue, forKey: NSURLIsDirectoryKey)
+    } catch {
+        
+    }
 
     return (urlIsDirectoryValue as? Bool) ?? false
   }
